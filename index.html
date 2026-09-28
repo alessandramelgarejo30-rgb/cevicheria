@@ -19,7 +19,6 @@
         }
 
         body {
-            /* Fondo Principal Solicitado */
             background: linear-gradient(rgba(248, 249, 250, 0.92), rgba(248, 249, 250, 0.92)), 
                         url('https://i.ibb.co/6c3LXJM7/fondo.jpg') repeat center center;
             background-size: cover;
@@ -61,7 +60,8 @@
             background: linear-gradient(45deg, #25d366, #128c7e);
             color: white;
             padding: 16px 36px;
-            text-decoration: none;
+            border: none;
+            cursor: pointer;
             font-weight: 600;
             font-size: 1.15rem;
             border-radius: 50px;
@@ -179,8 +179,9 @@
             background: linear-gradient(45deg, #0077b6, #0096c7);
             color: white;
             padding: 10px 20px;
+            border: none;
+            cursor: pointer;
             border-radius: 8px;
-            text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
@@ -209,13 +210,108 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
+            border: none;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .whatsapp-float:hover {
             transform: scale(1.15);
             background-color: #128c7e;
+        }
+
+        /* Modal (Ventana Emergente para Pedir Nombre y Teléfono) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            animation: animate__fadeInDown 0.3s;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            color: #001f3f;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .modal-subtitle {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #0077b6;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(45deg, #1eaf53, #0f7569);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #999;
         }
 
         /* Pie de Página */
@@ -239,9 +335,9 @@
     <header class="animate__animated animate__fadeIn">
         <h1 class="animate__animated animate__bounceInDown">El Auténtico Sabor Marino</h1>
         <p class="animate__animated animate__fadeInUp animate__delay-1s">Ceviches frescos preparados al instante. ¡Haz tu pedido ahora!</p>
-        <a href="https://wa.me/51902335523?text=Hola,%20quisiera%20hacer%20un%20pedido" class="btn-cta animate__animated animate__pulse animate__infinite" target="_blank">
+        <button onclick="abrirModal('un pedido')" class="btn-cta animate__animated animate__pulse animate__infinite">
             📲 Pedir por WhatsApp (902 335 523)
-        </a>
+        </button>
     </header>
 
     <!-- SECCIÓN 1: Platos Principales -->
@@ -260,7 +356,7 @@
                     <p class="card-description">Pescado fresco marinando en limón recién exprimido, servido con camote, choclo y su toque de ají limo.</p>
                     <div class="card-footer">
                         <span class="card-price">S/ 30.00</span>
-                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20ordenar%20el%20Ceviche%20Clásico%20Especial" class="btn-order" target="_blank">Pedir Aquí</a>
+                        <button onclick="abrirModal('Ceviche Clásico Especial')" class="btn-order">Pedir Aquí</button>
                     </div>
                 </div>
             </div>
@@ -275,7 +371,7 @@
                     <p class="card-description">Combinación perfecta de pescado fresco, pulpo, calamar y mariscos seleccionados en jugo de limón.</p>
                     <div class="card-footer">
                         <span class="card-price">S/ 38.00</span>
-                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20ordenar%20el%20Ceviche%20Mixto" class="btn-order" target="_blank">Pedir Aquí</a>
+                        <button onclick="abrirModal('Ceviche Mixto')" class="btn-order">Pedir Aquí</button>
                     </div>
                 </div>
             </div>
@@ -290,7 +386,7 @@
                     <p class="card-description">El combo definitivo: Ceviche de pescado + Chicharrón de pota crujiente + Arroz con mariscos.</p>
                     <div class="card-footer">
                         <span class="card-price">S/ 45.00</span>
-                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20ordenar%20el%20Trío%20Marino" class="btn-order" target="_blank">Pedir Aquí</a>
+                        <button onclick="abrirModal('Trío Marino')" class="btn-order">Pedir Aquí</button>
                     </div>
                 </div>
             </div>
@@ -314,7 +410,7 @@
                     <p class="card-description">Bebida tradicional peruana hecha a base de maíz morado, piña, manzana y un toque de canela y clavo.</p>
                     <div class="card-footer">
                         <span class="card-price">S/ 12.00</span>
-                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20ordenar%20una%20Chicha%20Morada" class="btn-order" target="_blank">Pedir Aquí</a>
+                        <button onclick="abrirModal('Chicha Morada Helada')" class="btn-order">Pedir Aquí</button>
                     </div>
                 </div>
             </div>
@@ -329,7 +425,7 @@
                     <p class="card-description">Crujientes trozos de pota empanizada, acompañados de yucas doradas y salsa tártara de la casa.</p>
                     <div class="card-footer">
                         <span class="card-price">S/ 22.00</span>
-                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20ordenar%20Porción%20de%20Chicharrón%20de%20Pota" class="btn-order" target="_blank">Pedir Aquí</a>
+                        <button onclick="abrirModal('Porción de Chicharrón de Pota')" class="btn-order">Pedir Aquí</button>
                     </div>
                 </div>
             </div>
@@ -344,7 +440,7 @@
                     <p class="card-description">La combinación perfecta para tu ceviche. Consulta por la disponibilidad de marcas heladas al instante.</p>
                     <div class="card-footer">
                         <span class="card-price">S/ 10.00</span>
-                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20consultar%20por%20Cerveza%20Helada" class="btn-order" target="_blank">Pedir Aquí</a>
+                        <button onclick="abrirModal('Cerveza Helada')" class="btn-order">Pedir Aquí</button>
                     </div>
                 </div>
             </div>
@@ -353,15 +449,71 @@
     </div>
 
     <!-- Botón Flotante de WhatsApp -->
-    <a href="https://wa.me/51902335523?text=Hola,%20quisiera%20consultar%20el%20menú" class="whatsapp-float" target="_blank" title="Escríbenos por WhatsApp">
+    <button onclick="abrirModal('un pedido')" class="whatsapp-float" title="Escríbenos por WhatsApp">
         💬
-    </a>
+    </button>
+
+    <!-- Modal Formulario de Datos para WhatsApp -->
+    <div id="modalPedido" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="cerrarModal()">&times;</button>
+            <h3 class="modal-title">Completa tu pedido</h3>
+            <p class="modal-subtitle">Ingresa tus datos para contactarte rápidamente.</p>
+            
+            <form id="formPedido" onsubmit="enviarWhatsApp(event)">
+                <div class="form-group">
+                    <label for="clienteNombre">Tu Nombre Completo:</label>
+                    <input type="text" id="clienteNombre" placeholder="Ej: Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label for="clienteTelefono">Tu Teléfono de Contacto:</label>
+                    <input type="tel" id="clienteTelefono" placeholder="Ej: 987654321" required>
+                </div>
+                <button type="submit" class="btn-submit">🚀 Confirmar y Enviar a WhatsApp</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Pie de página -->
     <footer>
         <p>&copy; 2026 Cevichería El Buen Sabor - Todos los derechos reservados.</p>
         <p>📞 Pedidos y Delivery al WhatsApp: <strong>902 335 523</strong></p>
     </footer>
+
+    <!-- Lógica JavaScript para conectar el pedido con WhatsApp -->
+    <script>
+        let productoSeleccionado = '';
+
+        function abrirModal(producto) {
+            productoSeleccionado = producto;
+            document.getElementById('modalPedido').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalPedido').style.display = 'none';
+        }
+
+        function enviarWhatsApp(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('clienteNombre').value.trim();
+            const telefono = document.getElementById('clienteTelefono').value.trim();
+            const numeroWhatsApp = "51902335523"; // Tu número de teléfono con código de Perú (+51)
+
+            // Formatear mensaje para WhatsApp
+            const mensaje = `Hola, mi nombre es *${nombre}* y mi número de contacto es *${telefono}*. Quisiera ordenar: *${productoSeleccionado}*.`;
+
+            // Codificar el texto para la URL
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+            // Redirigir a WhatsApp en una nueva pestaña
+            window.open(urlWhatsApp, '_blank');
+
+            // Limpiar y cerrar modal
+            document.getElementById('formPedido').reset();
+            cerrarModal();
+        }
+    </script>
 
 </body>
 </html>
