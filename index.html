@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cevichería El Buen Sabor | ¡Pide Tu Ceviche!</title>
+    <!-- Animaciones CSS y Fuente de Google -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos Generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            /* Fondo Principal Solicitado */
+            background: linear-gradient(rgba(248, 249, 250, 0.92), rgba(248, 249, 250, 0.92)), 
+                        url('https://i.ibb.co/6c3LXJM7/fondo.jpg') repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            color: #2b2d42;
+        }
+
+        /* Encabezado / Banner Principal */
+        header {
+            background: linear-gradient(rgba(0, 31, 63, 0.75), rgba(0, 31, 63, 0.75)), 
+                        url('https://i.ibb.co/6c3LXJM7/fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 120px 20px 90px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            color: #ffbe0b;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            font-weight: 300;
+        }
+
+        /* Botón Call to Action Principal */
+        .btn-cta {
+            display: inline-block;
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white;
+            padding: 16px 36px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.15rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Contenedores de Sección */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #001f3f;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: #ffbe0b;
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Grid de Platillos */
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        /* Tarjeta de Producto */
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .card-img-wrapper {
+            overflow: hidden;
+            height: 240px;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #001f3f;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .card-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #d90429;
+        }
+
+        .btn-order {
+            background: linear-gradient(45deg, #0077b6, #0096c7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
+        }
+
+        .btn-order:hover {
+            background: linear-gradient(45deg, #0056b3, #0077b6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 119, 182, 0.5);
+        }
+
+        /* Botón Flotante de WhatsApp Dinámico */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            background-color: #128c7e;
+        }
+
+        /* Pie de Página */
+        footer {
+            background-color: #001f3f;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado Principal Dinámico -->
+    <header class="animate__animated animate__fadeIn">
+        <h1 class="animate__animated animate__bounceInDown">El Auténtico Sabor Marino</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Ceviches frescos preparados al instante. ¡Haz tu pedido ahora!</p>
+        <a href="https://wa.me/51902335523?text=Hola,%20quisiera%20hacer%20un%20pedido" class="btn-cta animate__animated animate__pulse animate__infinite" target="_blank">
+            📲 Pedir por WhatsApp (902 335 523)
+        </a>
+    </header>
+
+    <!-- SECCIÓN 1: Platos Principales -->
+    <div class="container">
+        <h2 class="section-title">Nuestras Especialidades</h2>
+        
+        <div class="grid-menu">
+            
+            <!-- 1. Ceviche Clásico Especial -->
+            <div class="card animate__animated animate__fadeInUp">
+                <div class="card-img-wrapper">
+                    <img src="https://i.ibb.co/chSFYWyM/plato1.jpg" alt="Ceviche Clásico Especial">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Ceviche Clásico Especial</h3>
+                    <p class="card-description">Pescado fresco marinando en limón recién exprimido, servido con camote, choclo y su toque de ají limo.</p>
+                    <div class="card-footer">
+                        <span class="card-price">S/ 30.00</span>
+                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20ordenar%20el%20Ceviche%20Clásico%20Especial" class="btn-order" target="_blank">Pedir Aquí</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Ceviche Mixto -->
+            <div class="card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="card-img-wrapper">
+                    <img src="https://i.ibb.co/0y7YrzvZ/plato22.jpg" alt="Ceviche Mixto">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Ceviche Mixto</h3>
+                    <p class="card-description">Combinación perfecta de pescado fresco, pulpo, calamar y mariscos seleccionados en jugo de limón.</p>
+                    <div class="card-footer">
+                        <span class="card-price">S/ 38.00</span>
+                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20ordenar%20el%20Ceviche%20Mixto" class="btn-order" target="_blank">Pedir Aquí</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Trío Marino -->
+            <div class="card animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="card-img-wrapper">
+                    <img src="https://i.ibb.co/My44w7yY/plato3.jpg" alt="Trío Marino">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Trío Marino</h3>
+                    <p class="card-description">El combo definitivo: Ceviche de pescado + Chicharrón de pota crujiente + Arroz con mariscos.</p>
+                    <div class="card-footer">
+                        <span class="card-price">S/ 45.00</span>
+                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20ordenar%20el%20Trío%20Marino" class="btn-order" target="_blank">Pedir Aquí</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SECCIÓN 2: Bebidas y Complementos -->
+    <div class="container">
+        <h2 class="section-title">Bebidas y Complementos</h2>
+        
+        <div class="grid-menu">
+            
+            <!-- Complemento 1: Chicha Morada -->
+            <div class="card animate__animated animate__fadeInUp">
+                <div class="card-img-wrapper">
+                    <img src="https://i.ibb.co/G35VYtw1/bebida1.jpg" alt="Chicha Morada">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Chicha Morada Helada (1 Litro)</h3>
+                    <p class="card-description">Bebida tradicional peruana hecha a base de maíz morado, piña, manzana y un toque de canela y clavo.</p>
+                    <div class="card-footer">
+                        <span class="card-price">S/ 12.00</span>
+                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20ordenar%20una%20Chicha%20Morada" class="btn-order" target="_blank">Pedir Aquí</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complemento 2: Chicharrón de Pota -->
+            <div class="card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="card-img-wrapper">
+                    <img src="https://i.ibb.co/RT4WfTZ3/chchrr.jpg" alt="Chicharrón de Pota">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Porción de Chicharrón de Pota</h3>
+                    <p class="card-description">Crujientes trozos de pota empanizada, acompañados de yucas doradas y salsa tártara de la casa.</p>
+                    <div class="card-footer">
+                        <span class="card-price">S/ 22.00</span>
+                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20ordenar%20Porción%20de%20Chicharrón%20de%20Pota" class="btn-order" target="_blank">Pedir Aquí</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complemento 3: Cerveza Helada -->
+            <div class="card animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="card-img-wrapper">
+                    <img src="https://i.ibb.co/nqb3C27g/cerveza.jpg" alt="Cerveza Helada">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Cerveza Helada</h3>
+                    <p class="card-description">La combinación perfecta para tu ceviche. Consulta por la disponibilidad de marcas heladas al instante.</p>
+                    <div class="card-footer">
+                        <span class="card-price">S/ 10.00</span>
+                        <a href="https://wa.me/51902335523?text=Hola,%20quiero%20consultar%20por%20Cerveza%20Helada" class="btn-order" target="_blank">Pedir Aquí</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/51902335523?text=Hola,%20quisiera%20consultar%20el%20menú" class="whatsapp-float" target="_blank" title="Escríbenos por WhatsApp">
+        💬
+    </a>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2026 Cevichería El Buen Sabor - Todos los derechos reservados.</p>
+        <p>📞 Pedidos y Delivery al WhatsApp: <strong>902 335 523</strong></p>
+    </footer>
+
+</body>
+</html>
