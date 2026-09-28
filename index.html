@@ -193,6 +193,40 @@
             box-shadow: 0 6px 15px rgba(0, 119, 182, 0.5);
         }
 
+        /* Sección de Ubicación */
+        .map-wrapper {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 380px;
+            border: 0;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .btn-map {
+            display: inline-block;
+            background: linear-gradient(45deg, #d90429, #ef233c);
+            color: white;
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(217, 4, 41, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-map:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(217, 4, 41, 0.5);
+        }
+
         /* Botón Flotante de WhatsApp Dinámico */
         .whatsapp-float {
             position: fixed;
@@ -448,6 +482,22 @@
         </div>
     </div>
 
+    <!-- SECCIÓN 3: Ubicación -->
+    <div class="container">
+        <h2 class="section-title">Ubícanos aquí</h2>
+        <div class="map-wrapper animate__animated animate__fadeIn">
+            <iframe 
+                class="map-iframe"
+                src="https://maps.google.com/maps?q=-16.076953078983014,-72.49166497131776&z=17&output=embed"
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=-16.076953078983014,-72.49166497131776" target="_blank" class="btn-map">
+                📍 Cómo Llegar (Google Maps)
+            </a>
+        </div>
+    </div>
+
     <!-- Botón Flotante de WhatsApp -->
     <button onclick="abrirModal('un pedido')" class="whatsapp-float" title="Escríbenos por WhatsApp">
         💬
@@ -498,7 +548,7 @@
             
             const nombre = document.getElementById('clienteNombre').value.trim();
             const telefono = document.getElementById('clienteTelefono').value.trim();
-            const numeroWhatsApp = "51902335523"; // Tu número de teléfono con código de Perú (+51)
+            const numeroWhatsApp = "51902335523";
 
             // Formatear mensaje para WhatsApp
             const mensaje = `Hola, mi nombre es *${nombre}* y mi número de contacto es *${telefono}*. Quisiera ordenar: *${productoSeleccionado}*.`;
